@@ -1,0 +1,56 @@
+{
+  "name": "d3-geo-zoom",
+  "version": "1.0.0",
+  "description": "Zoom and Pan D3 Geo projections",
+  "unpkg": "dist/d3-geo-zoom.min.js",
+  "main": "dist/d3-geo-zoom.common.js",
+  "module": "dist/d3-geo-zoom.mjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasturiano/d3-geo-zoom.git"
+  },
+  "homepage": "https://github.com/vasturiano/d3-geo-zoom",
+  "keywords": [
+    "d3",
+    "geo",
+    "zoom",
+    "pan",
+    "versor"
+  ],
+  "author": {
+    "name": "Vasco Asturiano",
+    "url": "http://bl.ocks.org/vasturiano"
+  },
+  "bugs": {
+    "url": "https://github.com/vasturiano/d3-geo-zoom/issues"
+  },
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && rollup -c",
+    "watch": "rollup -c -w",
+    "minify": "uglifyjs dist/d3-geo-zoom.js -o dist/d3-geo-zoom.min.js -c -m --comments '/Version/'",
+    "build-module": "rollup -c rollup.config.module.js",
+    "prepublish": "npm run build && npm run minify && npm run build-module"
+  },
+  "dependencies": {
+    "d3-selection": "^1.1.0",
+    "d3-zoom": "^1.7.1",
+    "kapsule": "^1.7.6",
+    "versor": "~0.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "postcss-nested": "^2.1.2",
+    "postcss-simple-vars": "^4.1.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.4",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-postcss": "^0.5.5",
+    "rollup-watch": "^4.3.1",
+    "uglify-js": "^3.1.5"
+  }
+}
