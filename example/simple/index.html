@@ -11,38 +11,42 @@
     <div id="world"></div>
 
     <script>
+        const MARGIN = 5;
+
         const width = window.innerWidth;
         const height = window.innerHeight;
 
         const svg = d3.select('#world').append('svg')
-                .attr('width', width)
-                .attr('height', height);
+            .attr('width', width)
+            .attr('height', height);
 
         const projection = d3.geoOrthographic()
-                .scale((height - 10) / 2)
-                .translate([width / 2, height / 2])
-                .precision(0.1);
+            .scale((Math.min(width, height)) / 2 - MARGIN)
+            .translate([width / 2, height / 2]);
 
         const path = d3.geoPath()
                 .projection(projection);
 
         d3.json('//unpkg.com/world-atlas@1/world/110m.json', world => {
-            const sphere = { type: 'Sphere' };
-            const land = topojson.feature(world, world.objects.land);
+            svg.append('path').attr('class', 'geo-feature')
+                .datum({ type: 'Sphere' })
+                .attr('fill', 'aqua');
 
-            const spherePath = svg.append('path').attr('fill', 'aqua');
-            const landPath = svg.append('path').attr('fill', 'maroon');
-
-            render();
+            svg.append('path').attr('class', 'geo-feature')
+                .datum(topojson.feature(world, world.objects.land))
+                .attr('fill', 'maroon');
 
             d3.geoZoom()
                 .projection(projection)
                 .onChange(render)
                 (svg.node());
 
+            render();
+
+            //
+
             function render() {
-                spherePath.attr('d', path(sphere));
-                landPath.attr('d', path(land));
+                svg.selectAll('path.geo-feature').attr('d', path);
             }
         });
     </script>
