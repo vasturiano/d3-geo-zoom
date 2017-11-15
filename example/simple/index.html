@@ -29,7 +29,7 @@
 
         d3.geoZoom()
             .projection(projection)
-            .onChange(render)
+            .onMove(render)
             (svg.node());
 
         d3.json('//unpkg.com/world-atlas@1/world/110m.json', world => {
