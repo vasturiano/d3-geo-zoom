@@ -10,7 +10,7 @@ export default Kapsule({
                 state.unityScale = projection ? projection.scale() : 1;
             }
         },
-        onChange: { defaultVal: () => {} }
+        onMove: { defaultVal: () => {} }
     },
     init(nodeEl, state) {
         d3Select(nodeEl).call(d3Zoom()
@@ -39,7 +39,7 @@ export default Kapsule({
                 .rotate(r1)
                 .scale(d3Event.transform.k * state.unityScale);
 
-            state.onChange();
+            state.onMove();
         }
     }
 });
