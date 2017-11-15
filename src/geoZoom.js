@@ -31,13 +31,13 @@ export default Kapsule({
         function zoomed() {
             if (!state.projection) return;
 
+            state.projection.scale(d3Event.transform.k * state.unityScale);
+
             const v1 = versor.cartesian(state.projection.rotate(r0).invert(d3Mouse(this))),
                 q1 = versor.multiply(q0, versor.delta(v0, v1)),
                 r1 = versor.rotation(q1);
 
-            state.projection
-                .rotate(r1)
-                .scale(d3Event.transform.k * state.unityScale);
+            state.projection.rotate(r1);
 
             state.onMove();
         }
