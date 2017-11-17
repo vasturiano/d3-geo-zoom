@@ -14,7 +14,7 @@ export default Kapsule({
     },
     init(nodeEl, state) {
         d3Select(nodeEl).call(d3Zoom()
-            .scaleExtent([0.5, 1e3])
+            .scaleExtent([0.1, 1e3])
             .on('start', zoomStarted)
             .on('zoom', zoomed)
         );
