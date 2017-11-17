@@ -34,5 +34,5 @@ d3.geoZoom()
 
 | Method | Description | Default |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| <b>projection</b>([<i>object</i>]) | Getter/setter for the [D3 projection object](https://github.com/d3/d3-geo#projections) whose position settings are modified according to the zoom/pan user interactions. The projection should support the `scale` and `rotate` methods. ||
-| <b>onMove</b>([<i>fn</i>]) | Callback function for when the projection object is updated due to a user interaction. This is a convenient place to bind the render function that redraws the map component elements according to the current projection settings. ||
+| <b>projection</b>([<i>object</i>]) | Getter/setter for the [D3 projection object](https://github.com/d3/d3-geo#projections) whose position settings are modified according to the zoom/pan user interactions. The projection should support the `scale` and `rotate` methods. | - |
+| <b>onMove</b>([<i>fn</i>]) | Callback function for when the projection object is updated due to a user interaction. This is a convenient place to bind the render function that redraws the map component elements according to the current projection settings. | - |
