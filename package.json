@@ -1,6 +1,6 @@
 {
   "name": "d3-geo-zoom",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Zoom and Pan D3 Geo projections",
   "unpkg": "dist/d3-geo-zoom.min.js",
   "main": "dist/d3-geo-zoom.common.js",
