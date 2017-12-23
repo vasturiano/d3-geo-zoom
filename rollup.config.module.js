@@ -10,7 +10,7 @@ export default {
         },
         {
             format: 'es',
-            file: `dist/${name}.mjs`
+            file: `dist/${name}.module.js`
         }
     ],
     external: Object.keys(dependencies),

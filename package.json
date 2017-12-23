@@ -4,7 +4,7 @@
   "description": "Zoom and Pan D3 Geo projections",
   "unpkg": "dist/d3-geo-zoom.min.js",
   "main": "dist/d3-geo-zoom.common.js",
-  "module": "dist/d3-geo-zoom.mjs",
+  "module": "dist/d3-geo-zoom.module.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vasturiano/d3-geo-zoom.git"
