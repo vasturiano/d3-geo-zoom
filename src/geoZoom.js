@@ -4,43 +4,43 @@ import versor from 'versor';
 import Kapsule from 'kapsule';
 
 export default Kapsule({
-    props: {
-        projection: {
-            onChange(projection, state) {
-                state.unityScale = projection ? projection.scale() : 1;
-            }
-        },
-        onMove: { defaultVal: () => {} }
+  props: {
+    projection: {
+      onChange(projection, state) {
+        state.unityScale = projection ? projection.scale() : 1;
+      }
     },
-    init(nodeEl, state) {
-        d3Select(nodeEl).call(d3Zoom()
-            .scaleExtent([0.1, 1e3])
-            .on('start', zoomStarted)
-            .on('zoom', zoomed)
-        );
+    onMove: { defaultVal: () => {} }
+  },
+  init(nodeEl, state) {
+    d3Select(nodeEl).call(d3Zoom()
+      .scaleExtent([0.1, 1e3])
+      .on('start', zoomStarted)
+      .on('zoom', zoomed)
+    );
 
-        let v0, r0, q0;
+    let v0, r0, q0;
 
-        function zoomStarted() {
-            if (!state.projection) return;
+    function zoomStarted() {
+      if (!state.projection) return;
 
-            v0 = versor.cartesian(state.projection.invert(d3Mouse(this)));
-            r0 = state.projection.rotate();
-            q0 = versor(r0);
-        }
-
-        function zoomed() {
-            if (!state.projection) return;
-
-            state.projection.scale(d3Event.transform.k * state.unityScale);
-
-            const v1 = versor.cartesian(state.projection.rotate(r0).invert(d3Mouse(this))),
-                q1 = versor.multiply(q0, versor.delta(v0, v1)),
-                r1 = versor.rotation(q1);
-
-            state.projection.rotate(r1);
-
-            state.onMove();
-        }
+      v0 = versor.cartesian(state.projection.invert(d3Mouse(this)));
+      r0 = state.projection.rotate();
+      q0 = versor(r0);
     }
+
+    function zoomed() {
+      if (!state.projection) return;
+
+      state.projection.scale(d3Event.transform.k * state.unityScale);
+
+      const v1 = versor.cartesian(state.projection.rotate(r0).invert(d3Mouse(this))),
+        q1 = versor.multiply(q0, versor.delta(v0, v1)),
+        r1 = versor.rotation(q1);
+
+      state.projection.rotate(r1);
+
+      state.onMove();
+    }
+  }
 });
