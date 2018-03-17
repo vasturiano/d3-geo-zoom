@@ -1,0 +1,59 @@
+<head>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+
+  <script src="//unpkg.com/d3-geo-zoom"></script>
+
+  <style>body { margin: 0 }</style>
+</head>
+
+<body>
+  <div id="world"></div>
+
+  <script>
+    const MARGIN = 5;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    const canvas = d3.select('#world').append('canvas')
+      .attr('width', width)
+      .attr('height', height);
+    const ctx = canvas.node().getContext('2d');
+
+    const projection = d3.geoOrthographic()
+      .scale((Math.min(width, height)) / 2 - MARGIN)
+      .translate([width / 2, height / 2]);
+
+    const path = d3.geoPath()
+      .context(ctx)
+      .projection(projection);
+
+    d3.json('//unpkg.com/world-atlas@1/world/110m.json', world => {
+      render();
+
+      d3.geoZoom()
+        .projection(projection)
+        .onMove(render)
+      (canvas.node());
+
+      render();
+
+      //
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.attr('width'), canvas.attr('height'));
+
+        ctx.beginPath();
+        path({ type: 'Sphere' });
+        ctx.fillStyle = 'aqua';
+        ctx.fill();
+
+        ctx.beginPath();
+        path(topojson.feature(world, world.objects.land));
+        ctx.fillStyle = 'maroon';
+        ctx.fill();
+      }
+    });
+  </script>
+</body>
