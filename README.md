@@ -7,7 +7,7 @@ Apply zoom and pan user interactions to D3 spherical map projections in the same
 Heavily based in previous work by Jason Davies' [Rotate the World](https://www.jasondavies.com/maps/rotate/) and Mike Bostock's [Versor Dragging](https://bl.ocks.org/mbostock/7ea1dde508cec6d2d95306f92642bc42). 
 Makes use of Fil's [versors package](https://github.com/Fil/versor) for translating mouse coordinates to the sphere.
 
-See the included [example](https://vasturiano.github.io/d3-geo-zoom/example/simple/).
+See the included examples ([canvas](https://vasturiano.github.io/d3-geo-zoom/example/canvas/) and [svg](https://vasturiano.github.io/d3-geo-zoom/example/svg/)).
 
 ## Quick start
 
