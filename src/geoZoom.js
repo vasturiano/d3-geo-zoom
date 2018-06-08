@@ -10,6 +10,7 @@ export default Kapsule({
         state.unityScale = projection ? projection.scale() : 1;
       }
     },
+    northUp: { default: false },
     onMove: { defaultVal: () => {} }
   },
   init(nodeEl, state) {
@@ -37,6 +38,10 @@ export default Kapsule({
       const v1 = versor.cartesian(state.projection.rotate(r0).invert(d3Mouse(this))),
         q1 = versor.multiply(q0, versor.delta(v0, v1)),
         r1 = versor.rotation(q1);
+
+      if (state.northUp) {
+        r1[2] = 0; // Don't rotate on Z axis
+      }
 
       state.projection.rotate(r1);
 
