@@ -36,4 +36,5 @@ d3.geoZoom()
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |:-------------:|
 | <b>projection</b>([<i>object</i>]) | Getter/setter for the [D3 projection object](https://github.com/d3/d3-geo#projections) whose position settings are modified according to the zoom/pan user interactions. The projection should support the `scale` and `rotate` methods. | - |
 | <b>northUp</b>([<i>boolean</i>]) | Getter/setter for whether to maintain a north pointing upwards orientation or allow free rotation in all directions. | false |
+| <b>scaleExtent</b>([<i>array</i>]) | Getter/setter for whether to restraint the zoom extent [min, max] | [0.1, 1e3] |
 | <b>onMove</b>([<i>fn</i>]) | Callback function for when the projection object is updated due to a user interaction. This is a convenient place to bind the render function that redraws the map component elements according to the current projection settings. | - |
