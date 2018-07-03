@@ -10,12 +10,16 @@ export default Kapsule({
         state.unityScale = projection ? projection.scale() : 1;
       }
     },
+    scaleExtent: {
+      default: [0.1, 1e3],
+      onChange(extent, state) { state.zoom && state.zoom.scaleExtent(extent) }
+    },
     northUp: { default: false },
     onMove: { defaultVal: () => {} }
   },
   init(nodeEl, state) {
-    d3Select(nodeEl).call(d3Zoom()
-      .scaleExtent([0.1, 1e3])
+    d3Select(nodeEl).call(state.zoom = d3Zoom()
+      .scaleExtent(state.scaleExtent)
       .on('start', zoomStarted)
       .on('zoom', zoomed)
     );
@@ -33,19 +37,20 @@ export default Kapsule({
     function zoomed() {
       if (!state.projection) return;
 
-      state.projection.scale(d3Event.transform.k * state.unityScale);
+      const scale = d3Event.transform.k * state.unityScale;
+      state.projection.scale(scale);
 
       const v1 = versor.cartesian(state.projection.rotate(r0).invert(d3Mouse(this))),
         q1 = versor.multiply(q0, versor.delta(v0, v1)),
-        r1 = versor.rotation(q1);
+        rotation = versor.rotation(q1);
 
       if (state.northUp) {
-        r1[2] = 0; // Don't rotate on Z axis
+        rotation[2] = 0; // Don't rotate on Z axis
       }
 
-      state.projection.rotate(r1);
+      state.projection.rotate(rotation);
 
-      state.onMove();
+      state.onMove({ scale, rotation });
     }
   }
 });
