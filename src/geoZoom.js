@@ -10,12 +10,15 @@ export default Kapsule({
         state.unityScale = projection ? projection.scale() : 1;
       }
     },
-    scaleExtent: { default: [0.1, 1e3] },
+    scaleExtent: {
+      default: [0.1, 1e3],
+      onChange(extent, state) { state.zoom && state.zoom.scaleExtent(extent) }
+    },
     northUp: { default: false },
     onMove: { defaultVal: () => {} }
   },
   init(nodeEl, state) {
-    d3Select(nodeEl).call(d3Zoom()
+    d3Select(nodeEl).call(state.zoom = d3Zoom()
       .scaleExtent(state.scaleExtent)
       .on('start', zoomStarted)
       .on('zoom', zoomed)
