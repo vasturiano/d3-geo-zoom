@@ -1,6 +1,9 @@
-# d3.geoZoom
+d3.geoZoom
+==============
 
-[![NPM](https://nodei.co/npm/d3-geo-zoom.png?compact=true)](https://nodei.co/npm/d3-geo-zoom/)
+[![NPM package][npm-img]][npm-url]
+[![Build Size][build-size-img]][build-size-url]
+[![Dependencies][dependencies-img]][dependencies-url]
 
 Apply zoom and pan user interactions to D3 spherical map projections in the same fashion as [d3-zoom](https://github.com/d3/d3-zoom) for regular cartesian coordinates. Generally used with [Azimuthal projections](https://github.com/d3/d3-geo#azimuthal-projections), but also works for other projection types as long as scaling and rotation is supported.
 
@@ -38,3 +41,11 @@ d3.geoZoom()
 | <b>northUp</b>([<i>boolean</i>]) | Getter/setter for whether to maintain a north pointing upwards orientation or allow free rotation in all directions. | false |
 | <b>scaleExtent</b>([<i>array</i>]) | Getter/setter for the scale extent (`[min, max]`) to restrict the zoom interaction to. | `[0.1, 1000]` |
 | <b>onMove</b>([<i>fn({ scale, rotation })</i>]) | Callback function for when the projection object is updated due to a user interaction. This is a convenient place to bind the render function that redraws the map component elements according to the current projection settings. The callback function includes a single object parameter that contains the new scale and rotation values. | - |
+
+
+[npm-img]: https://img.shields.io/npm/v/d3-geo-zoom.svg
+[npm-url]: https://npmjs.org/package/d3-geo-zoom
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-geo-zoom.svg
+[build-size-url]: https://bundlephobia.com/result?p=d3-geo-zoom
+[dependencies-img]: https://img.shields.io/david/vasturiano/d3-geo-zoom.svg
+[dependencies-url]: https://david-dm.org/vasturiano/d3-geo-zoom
