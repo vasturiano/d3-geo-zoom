@@ -1,7 +1,16 @@
-import { select as d3Select, event as d3Event, mouse as d3Mouse } from 'd3-selection';
+import { select as d3Select, event as d3Event, mouse as d3Mouse, touches as d3Touches } from 'd3-selection';
 import { zoom as d3Zoom } from 'd3-zoom';
 import versor from 'versor';
 import Kapsule from 'kapsule';
+
+function getPointerCoords(el) {
+  const avg = vals => vals.reduce((agg, v) => agg + v, 0) / vals.length;
+
+  const touches = d3Touches(el);
+  return (touches && touches.length > 1)
+    ? [0, 1].map(idx => avg(touches.map(t => t[idx]))) // calc centroid of all points if multi-touch
+    : d3Mouse(el)
+}
 
 export default Kapsule({
   props: {
@@ -29,7 +38,7 @@ export default Kapsule({
     function zoomStarted() {
       if (!state.projection) return;
 
-      v0 = versor.cartesian(state.projection.invert(d3Mouse(this)));
+      v0 = versor.cartesian(state.projection.invert(getPointerCoords(this)));
       r0 = state.projection.rotate();
       q0 = versor(r0);
     }
