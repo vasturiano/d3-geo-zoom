@@ -38,19 +38,19 @@
   "dependencies": {
     "d3-selection": "^1.4.1",
     "d3-zoom": "^1.8.3",
-    "kapsule": "^1.12.1",
+    "kapsule": "^1.12.2",
     "versor": "~0.0.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-env": "^7.8.7",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "rimraf": "^3.0.2",
-    "rollup": "^1.31.1",
-    "rollup-plugin-babel": "^4.3.3",
-    "terser": "^4.6.3"
+    "rollup": "^2.0.6",
+    "rollup-plugin-babel": "^4.4.0",
+    "terser": "^4.6.6"
   }
 }
