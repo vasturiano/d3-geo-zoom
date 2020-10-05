@@ -3,10 +3,10 @@ import { zoom as d3Zoom } from 'd3-zoom';
 import versor from 'versor/src/index';
 import Kapsule from 'kapsule';
 
-function getPointerCoords(ev) {
+function getPointerCoords(ev,el) {
   const avg = vals => vals.reduce((agg, v) => agg + v, 0) / vals.length;
 
-  const pointers = d3Pointers(ev);
+  const pointers = d3Pointers(ev,el);
   return (pointers && pointers.length > 1)
     ? [0, 1].map(idx => avg(pointers.map(t => t[idx]))) // calc centroid of all points if multi-touch
     : pointers.length
@@ -40,7 +40,7 @@ export default Kapsule({
     function zoomStarted(ev) {
       if (!state.projection) return;
 
-      v0 = versor.cartesian(state.projection.invert(getPointerCoords(ev)));
+      v0 = versor.cartesian(state.projection.invert(getPointerCoords(ev,nodeEl)));
       r0 = state.projection.rotate();
       q0 = versor(r0);
     }
@@ -51,7 +51,7 @@ export default Kapsule({
       const scale = ev.transform.k * state.unityScale;
       state.projection.scale(scale);
 
-      const v1 = versor.cartesian(state.projection.rotate(r0).invert(getPointerCoords(ev))),
+      const v1 = versor.cartesian(state.projection.rotate(r0).invert(getPointerCoords(ev,nodeEl))),
         q1 = versor.multiply(q0, versor.delta(v0, v1)),
         rotation = versor.rotation(q1);
 
