@@ -3,17 +3,6 @@ import { zoom as d3Zoom } from 'd3-zoom';
 import versor from 'versor/src/index';
 import Kapsule from 'kapsule';
 
-function getPointerCoords(ev,el) {
-  const avg = vals => vals.reduce((agg, v) => agg + v, 0) / vals.length;
-
-  const pointers = d3Pointers(ev,el);
-  return (pointers && pointers.length > 1)
-    ? [0, 1].map(idx => avg(pointers.map(t => t[idx]))) // calc centroid of all points if multi-touch
-    : pointers.length
-      ? pointers[0] // single point click
-      : [undefined, undefined];
-}
-
 export default Kapsule({
   props: {
     projection: {
@@ -40,7 +29,7 @@ export default Kapsule({
     function zoomStarted(ev) {
       if (!state.projection) return;
 
-      v0 = versor.cartesian(state.projection.invert(getPointerCoords(ev,nodeEl)));
+      v0 = versor.cartesian(state.projection.invert(getPointerCoords(ev)));
       r0 = state.projection.rotate();
       q0 = versor(r0);
     }
@@ -51,7 +40,7 @@ export default Kapsule({
       const scale = ev.transform.k * state.unityScale;
       state.projection.scale(scale);
 
-      const v1 = versor.cartesian(state.projection.rotate(r0).invert(getPointerCoords(ev,nodeEl))),
+      const v1 = versor.cartesian(state.projection.rotate(r0).invert(getPointerCoords(ev))),
         q1 = versor.multiply(q0, versor.delta(v0, v1)),
         rotation = versor.rotation(q1);
 
@@ -62,6 +51,17 @@ export default Kapsule({
       state.projection.rotate(rotation);
 
       state.onMove({ scale, rotation });
+    }
+
+    function getPointerCoords(zoomEv) {
+      const avg = vals => vals.reduce((agg, v) => agg + v, 0) / vals.length;
+
+      const pointers = d3Pointers(zoomEv, nodeEl);
+      return (pointers && pointers.length > 1)
+        ? [0, 1].map(idx => avg(pointers.map(t => t[idx]))) // calc centroid of all points if multi-touch
+        : pointers.length
+          ? pointers[0] // single point click
+          : [undefined, undefined];
     }
   }
 });
