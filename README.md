@@ -3,7 +3,7 @@ d3.geoZoom
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
-[![Dependencies][dependencies-img]][dependencies-url]
+[![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
 Apply zoom and pan user interactions to D3 spherical map projections in the same fashion as [d3-zoom](https://github.com/d3/d3-zoom) for regular cartesian coordinates. Generally used with [Azimuthal projections](https://github.com/d3/d3-geo#azimuthal-projections), but also works for other projection types as long as scaling and rotation is supported.
 
@@ -14,19 +14,19 @@ See the included examples ([canvas](https://vasturiano.github.io/d3-geo-zoom/exa
 
 ## Quick start
 
-```
+```js
 import d3GeoZoom from 'd3-geo-zoom';
 ```
 or
-```
+```js
 d3.geoZoom = require('d3-geo-zoom');
 ```
 or even
-```
+```html
 <script src="//unpkg.com/d3-geo-zoom"></script>
 ```
 then
-```
+```js
 d3.geoZoom()
     .projection(<mapProjection>)
     .onMove(<callbackFn>)
@@ -43,9 +43,9 @@ d3.geoZoom()
 | <b>onMove</b>([<i>fn({ scale, rotation })</i>]) | Callback function for when the projection object is updated due to a user interaction. This is a convenient place to bind the render function that redraws the map component elements according to the current projection settings. The callback function includes a single object parameter that contains the new scale and rotation values. | - |
 
 
-[npm-img]: https://img.shields.io/npm/v/d3-geo-zoom.svg
+[npm-img]: https://img.shields.io/npm/v/d3-geo-zoom
 [npm-url]: https://npmjs.org/package/d3-geo-zoom
-[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-geo-zoom.svg
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-geo-zoom
 [build-size-url]: https://bundlephobia.com/result?p=d3-geo-zoom
-[dependencies-img]: https://img.shields.io/david/vasturiano/d3-geo-zoom.svg
-[dependencies-url]: https://david-dm.org/vasturiano/d3-geo-zoom
+[npm-downloads-img]: https://img.shields.io/npm/dt/d3-geo-zoom
+[npm-downloads-url]: https://www.npmtrends.com/d3-geo-zoom
