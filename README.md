@@ -17,11 +17,7 @@ See the included examples ([canvas](https://vasturiano.github.io/d3-geo-zoom/exa
 ```js
 import d3GeoZoom from 'd3-geo-zoom';
 ```
-or
-```js
-d3.geoZoom = require('d3-geo-zoom');
-```
-or even
+or using a *script* tag
 ```html
 <script src="//unpkg.com/d3-geo-zoom"></script>
 ```

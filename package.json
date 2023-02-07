@@ -2,9 +2,14 @@
   "name": "d3-geo-zoom",
   "version": "1.4.4",
   "description": "Zoom and Pan D3 Geo projections",
+  "type": "module",
   "unpkg": "dist/d3-geo-zoom.min.js",
-  "main": "dist/d3-geo-zoom.common.js",
-  "module": "dist/d3-geo-zoom.module.js",
+  "main": "dist/d3-geo-zoom.mjs",
+  "module": "dist/d3-geo-zoom.mjs",
+  "exports": {
+    "umd": "./dist/d3-geo-zoom.min.js",
+    "default": "./dist/d3-geo-zoom.mjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vasturiano/d3-geo-zoom.git"
@@ -34,21 +39,22 @@
     "example/**/*"
   ],
   "dependencies": {
-    "d3-selection": "^2.0.0",
-    "d3-zoom": "^2.0.0",
-    "kapsule": "^1.13.4",
+    "d3-selection": "2 - 3",
+    "d3-zoom": "2 - 3",
+    "kapsule": "^1.14",
     "versor": "~0.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.14.2",
-    "@babel/preset-env": "^7.14.2",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.50.0",
-    "rollup-plugin-terser": "^7.0.2"
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "rimraf": "^4.1.2",
+    "rollup": "^3.14.0"
+  },
+  "engines": {
+    "node": ">=12"
   }
 }
