@@ -19,7 +19,7 @@ import d3GeoZoom from 'd3-geo-zoom';
 ```
 or using a *script* tag
 ```html
-<script src="//unpkg.com/d3-geo-zoom"></script>
+<script src="//cdn.jsdelivr.net/npm/d3-geo-zoom"></script>
 ```
 then
 ```js

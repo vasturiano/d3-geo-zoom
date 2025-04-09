@@ -3,6 +3,7 @@
   "version": "1.5.3",
   "description": "Zoom and Pan D3 Geo projections",
   "type": "module",
+  "jsdelivr": "dist/d3-geo-zoom.min.js",
   "unpkg": "dist/d3-geo-zoom.min.js",
   "main": "dist/d3-geo-zoom.mjs",
   "module": "dist/d3-geo-zoom.mjs",
